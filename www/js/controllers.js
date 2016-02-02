@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('conFusion.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
