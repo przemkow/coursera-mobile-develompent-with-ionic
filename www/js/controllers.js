@@ -153,12 +153,24 @@ angular.module('conFusion.controllers', [])
     };
 }])
 
-.controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', 'baseURL', function($scope, $stateParams, menuFactory, baseURL) {
+.controller('DishDetailController', ['$scope', '$stateParams', '$ionicPopover', '$ionicModal', 'menuFactory', 'favoriteFactory', 'baseURL', function($scope, $stateParams, $ionicPopover, $ionicModal, menuFactory, favoriteFactory, baseURL) {
 
     $scope.baseURL = baseURL;
     $scope.dish = {};
     $scope.showDish = false;
     $scope.message="Loading ...";
+
+    $ionicPopover.fromTemplateUrl('templates/dish-detail-popover.html', {
+      scope: $scope
+    }).then(function(popover) {
+      $scope.dishDetailPopover = popover;
+    });
+
+    $ionicModal.fromTemplateUrl('templates/dish-comment.html',{
+      scope: $scope
+    }).then(function(popover) {
+      $scope.commentModal = popover;
+    });
 
     $scope.dish = menuFactory.getDishes().get({id:parseInt($stateParams.id,10)})
     .$promise.then(
@@ -171,7 +183,30 @@ angular.module('conFusion.controllers', [])
                     }
     );
 
+    $scope.addFavorite = function (index) {
+        console.log("index is " + index);
+        favoriteFactory.addToFavorites(index);
+        $scope.dishDetailPopover.hide();
+    };
 
+    $scope.openCommentModal = function() {
+      $scope.commentModal.show();
+      $scope.dishDetailPopover.hide();
+    };
+
+    $scope.closeCommentModal = function(){
+      $scope.commentModal.hide();
+    };
+
+    $scope.newComment = {rating:5, comment:"", author:"", date:""};
+    $scope.submitComment = function () {
+        $scope.newComment.date = new Date().toISOString();
+        console.log($scope.newComment);
+        $scope.dish.comments.push($scope.newComment);
+        menuFactory.getDishes().update({id:$scope.dish.id},$scope.dish);
+        $scope.commentModal.hide();
+        $scope.newComment = {rating:5, comment:"", author:"", date:""};
+    };
 }])
 
 .controller('DishCommentController', ['$scope', 'menuFactory', function($scope,menuFactory) {
@@ -189,7 +224,7 @@ angular.module('conFusion.controllers', [])
         $scope.commentForm.$setPristine();
 
         $scope.mycomment = {rating:5, comment:"", author:"", date:""};
-    }
+    };
 }])
 
 // implement the IndexController and About Controller here
