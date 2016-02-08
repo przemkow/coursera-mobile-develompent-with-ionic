@@ -6,7 +6,26 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('conFusion', ['ionic', 'conFusion.controllers', 'conFusion.services'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $ionicLoading) {
+  $rootScope.$on('loading:show', function () {
+      $ionicLoading.show({
+          template: '<ion-spinner></ion-spinner> Loading ...'
+      })
+  });
+
+  $rootScope.$on('loading:hide', function () {
+      $ionicLoading.hide();
+  });
+
+  $rootScope.$on('$stateChangeStart', function () {
+      console.log('Loading ...');
+      $rootScope.$broadcast('loading:show');
+  });
+
+  $rootScope.$on('$stateChangeSuccess', function () {
+      console.log('done');
+      $rootScope.$broadcast('loading:hide');
+  });
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
