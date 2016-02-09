@@ -76,7 +76,6 @@ angular.module('conFusion.controllers', [])
     $scope.baseURL = baseURL;
     $scope.tab = 1;
     $scope.filtText = '';
-
     $scope.dishes = dishes;
 
     $scope.select = function(setTab) {
