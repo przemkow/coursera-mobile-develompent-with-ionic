@@ -74,7 +74,7 @@ angular.module('conFusion.services', ['ngResource'])
             getObject: function(key,defaultValue) {
               return JSON.parse($window.localStorage[key] || defaultValue);
             }
-          }
+          };
         }])
 
 ;

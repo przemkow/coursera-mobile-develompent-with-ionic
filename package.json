@@ -18,9 +18,12 @@
     "cordova-plugin-device",
     "cordova-plugin-console",
     "cordova-plugin-whitelist",
-    "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
-    "ionic-plugin-keyboard"
+    "ionic-plugin-keyboard",
+    {
+      "locator": "https://github.com/apache/cordova-plugin-splashscreen.git",
+      "id": "cordova-plugin-splashscreen"
+    }
   ],
   "cordovaPlatforms": [
     "android"
