@@ -2,7 +2,7 @@
 
 // if you wanna deploy application on real device, set this variable to false
 // this variable disable cordova options which are not compatible with "ionic serve"
-var DEVELOPMENT = true;
+var DEVELOPMENT = false;
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)

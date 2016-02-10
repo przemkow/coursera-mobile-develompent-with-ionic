@@ -8,34 +8,39 @@
   <ion-content>
     <form ng-submit="doRegister()">
       <div class="list">
-       <label class="item item-input">
-       <span class="input-label">Your Picture</span>
-       </label>
-       <label class="item item-input">
-       <img class="padding" ng-src="{{registration.imgSrc}}">
-       </label>
-       <label class="item item-input">
-       <button class="button button-block button-positive" type="button" ng-click="takePicture()">
+        <label class="item item-input">
+          <span class="input-label">Your Picture</span>
+        </label>
+        <label class="item item-input">
+          <img class="padding" ng-src="{{registration.imgSrc}}">
+        </label>
+        <label class="item item-input-button">
+          <button class="button button-block button-positive" type="button" ng-click="takePicture()">
             Take Picture
-        </button>
+          </button>
+        </label>
+        <label class="item item-input-button">
+          <button class="button button-block button-balanced" type="button" ng-click="openGallery()">
+            Gallery
+          </button>
         </label>
         <label class="item item-input">
           <span class="input-label">First Name</span>
           <input type="text" ng-model="registration.firstname">
         </label>
-         <label class="item item-input">
+        <label class="item item-input">
           <span class="input-label">Last Name</span>
           <input type="text" ng-model="registration.lastname">
         </label>
-         <label class="item item-input">
+        <label class="item item-input">
           <span class="input-label">Username</span>
           <input type="text" ng-model="registration.username">
         </label>
-       <label class="item item-input">
+        <label class="item item-input">
           <span class="input-label">Telephone Number</span>
           <input type="tel" ng-model="registration.telnum">
         </label>
-       <label class="item item-input">
+        <label class="item item-input">
           <span class="input-label">Email</span>
           <input type="email" ng-model="registration.email">
         </label>
@@ -45,4 +50,4 @@
       </div>
     </form>
   </ion-content>
-</ion-modal-view> 
+</ion-modal-view>
