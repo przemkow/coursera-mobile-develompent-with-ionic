@@ -9,29 +9,33 @@ angular.module('conFusion.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  $ionicPlatform.ready(function() {
-      var options = {
-          quality: 50,
-          destinationType: Camera.DestinationType.DATA_URL,
-          sourceType: Camera.PictureSourceType.CAMERA,
-          allowEdit: true,
-          encodingType: Camera.EncodingType.JPEG,
-          targetWidth: 100,
-          targetHeight: 100,
-          popoverOptions: CameraPopoverOptions,
-          saveToPhotoAlbum: false
-      };
-       $scope.takePicture = function() {
-          $cordovaCamera.getPicture(options).then(function(imageData) {
-              $scope.registration.imgSrc = "data:image/jpeg;base64," + imageData;
-          }, function(err) {
-              console.log(err);
-          });
+  if (DEVELOPMENT === false) {
+    $ionicPlatform.ready(function() {
+        var options = {
+            quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL,
+            sourceType: Camera.PictureSourceType.CAMERA,
+            allowEdit: true,
+            encodingType: Camera.EncodingType.JPEG,
+            targetWidth: 100,
+            targetHeight: 100,
+            popoverOptions: CameraPopoverOptions,
+            saveToPhotoAlbum: false
+        };
+         $scope.takePicture = function() {
+            $cordovaCamera.getPicture(options).then(function(imageData) {
+                $scope.registration.imgSrc = "data:image/jpeg;base64," + imageData;
+            }, function(err) {
+                console.log(err);
+            });
 
-          $scope.registerform.show();
+            $scope.registerform.show();
 
-      };
-  });
+        };
+    });
+  }else{
+    console.log("camera is not available in development mode");
+  }
 
   // Form data for the login modal
   $scope.loginData = $localStorage.getObject('userinfo','{}');
