@@ -15,7 +15,7 @@ angular.module('conFusion', ['ionic', 'ngCordova', 'conFusion.controllers', 'con
   $rootScope.$on('loading:show', function () {
       $ionicLoading.show({
           template: '<ion-spinner></ion-spinner> Loading ...'
-      })
+      });
   });
 
   $rootScope.$on('loading:hide', function () {
